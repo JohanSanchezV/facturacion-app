@@ -12,6 +12,9 @@ public class ConexionBD {
     private static final String URL = "jdbc:oracle:thin:@lenguajesbd_low";
     private static final String TNS_ADMIN = "J:/LenguajesBD/wallet/Wallet_LenguajesBD";
 
+    private ConexionBD() {
+    }
+
     public static Connection getConnection() throws SQLException {
         Properties props = new Properties();
         props.setProperty("user", USER);

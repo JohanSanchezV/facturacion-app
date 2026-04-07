@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="facturacion.proyecto.controller.ClientesController"
+      spacing="10" alignment="CENTER" prefWidth="500" prefHeight="500">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <Label text="Mantenimiento de Clientes" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+    <TextField fx:id="txtNombre" promptText="Nombre"/>
+    <TextField fx:id="txtIdentificacion" promptText="Identificación"/>
+    <TextField fx:id="txtCorreo" promptText="Correo"/>
+    <TextField fx:id="txtTelefono" promptText="Teléfono"/>
+
+    <Button text="Guardar" onAction="#guardarCliente" prefWidth="180"/>
+    <Button text="Limpiar" onAction="#limpiarFormulario" prefWidth="180"/>
+    <Button text="Cargar clientes" onAction="#cargarClientes" prefWidth="180"/>
+    <Button text="Volver" onAction="#volver" prefWidth="180"/>
+
+    <TableView fx:id="tblClientes" prefWidth="450" prefHeight="180">
+        <columns>
+            <TableColumn fx:id="colNombre" text="Nombre" prefWidth="180"/>
+            <TableColumn fx:id="colIdentificacion" text="Identificación" prefWidth="120"/>
+            <TableColumn fx:id="colCorreo" text="Correo" prefWidth="150"/>
+        </columns>
+    </TableView>
+</VBox>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="facturacion.proyecto.controller.MenuController"
+      spacing="12" alignment="CENTER" prefWidth="450" prefHeight="350">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <Label text="Menú Principal" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+    <Label fx:id="lblBienvenida"/>
+
+    <Button text="Clientes" onAction="#abrirClientes" prefWidth="220"/>
+    <Button text="Productos" onAction="#abrirProductos" prefWidth="220"/>
+    <Button text="Facturación" onAction="#abrirFacturacion" prefWidth="220"/>
+    <Button text="Cerrar sesión" onAction="#salir" prefWidth="220"/>
+</VBox>
