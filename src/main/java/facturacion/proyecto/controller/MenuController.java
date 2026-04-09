@@ -35,7 +35,7 @@ public class MenuController {
 
     @FXML
     public void abrirFacturacion(ActionEvent event) {
-    abrirVentana("/facturacion/proyecto/facturacion-view.fxml", "Facturación");
+        abrirVentana("/facturacion/proyecto/facturacion-view.fxml", "Facturación");
     }
 
     @FXML
@@ -51,31 +51,37 @@ public class MenuController {
             stage.show();
 
         } catch (Exception e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText(null);
-            alert.setContentText("No se pudo volver al login: " + e.getMessage());
-            alert.showAndWait();
+            mostrarMensaje("Error", "No se pudo volver al login: " + e.getMessage());
         }
     }
 
-    private void abrirVentana(String rutaFxml, String titulo) {
-        try {
-            FXMLLoader loader = new FXMLLoader(App.class.getResource(rutaFxml));
-            Scene scene = new Scene(loader.load());
+private void abrirVentana(String rutaFxml, String titulo) {
+    try {
+        FXMLLoader loader = new FXMLLoader(App.class.getResource(rutaFxml));
+        Scene scene = new Scene(loader.load());
 
-            Stage stage = new Stage();
-            stage.setTitle(titulo);
-            stage.setScene(scene);
-            stage.setResizable(false);
-            stage.show();
+        Stage stage = new Stage();
+        stage.setTitle(titulo);
+        stage.setScene(scene);
+        stage.setResizable(false);
+        stage.show();
 
-        } catch (Exception e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText(null);
-            alert.setContentText("No se pudo abrir la ventana: " + e.getMessage());
-            alert.showAndWait();
-        }
+    } catch (Exception e) {
+        e.printStackTrace();
+
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText("No se pudo abrir la ventana");
+        alert.setContentText(e.getClass().getSimpleName() + ": " + e.getMessage());
+        alert.showAndWait();
+    }
+}
+
+    private void mostrarMensaje(String titulo, String mensaje) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(titulo);
+        alert.setHeaderText(null);
+        alert.setContentText(mensaje);
+        alert.showAndWait();
     }
 }

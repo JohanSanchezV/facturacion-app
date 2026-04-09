@@ -2,29 +2,116 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
 <VBox xmlns:fx="http://javafx.com/fxml"
-      fx:controller="facturacion.proyecto.controller.FacturasController"
-      spacing="10" alignment="CENTER" prefWidth="600" prefHeight="420">
+      fx:controller="facturacion.proyecto.controller.FacturacionController"
+      spacing="14" alignment="TOP_CENTER" prefWidth="980" prefHeight="780">
     <padding>
         <Insets top="20" right="20" bottom="20" left="20"/>
     </padding>
 
-    <Label text="Facturas Emitidas" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+    <Label text="Facturación"
+           style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
 
-    <Button text="Cargar facturas" onAction="#cargarFacturas" prefWidth="200"/>
-    <Button text="Volver" onAction="#volver" prefWidth="200"/>
+    <Label text="Datos del cliente"
+           style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
 
-    <TableView fx:id="tblFacturas" prefWidth="550" prefHeight="250">
+    <GridPane hgap="12" vgap="10">
+        <Label text="Factura actual:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+        <Label fx:id="lblFacturaActual" text="Sin guardar"
+               style="-fx-font-weight: bold;"
+               GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+        <Label text="Fecha:" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+        <TextField fx:id="txtFecha" GridPane.rowIndex="0" GridPane.columnIndex="3" prefWidth="220"/>
+
+        <Label text="Identificación:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+        <TextField fx:id="txtIdentificacionCliente" GridPane.rowIndex="1" GridPane.columnIndex="1" prefWidth="220"/>
+        <Button text="Buscar cliente" onAction="#buscarCliente" GridPane.rowIndex="1" GridPane.columnIndex="2"/>
+
+        <Label text="Nombre:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+        <TextField fx:id="txtNombreCliente" editable="false" GridPane.rowIndex="2" GridPane.columnIndex="1" prefWidth="220"/>
+
+        <Label text="Correo:" GridPane.rowIndex="2" GridPane.columnIndex="2"/>
+        <TextField fx:id="txtCorreoCliente" editable="false" GridPane.rowIndex="2" GridPane.columnIndex="3" prefWidth="220"/>
+
+        <Label text="Teléfono:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+        <TextField fx:id="txtTelefonoCliente" editable="false" GridPane.rowIndex="3" GridPane.columnIndex="1" prefWidth="220"/>
+    </GridPane>
+
+    <Label text="Detalle"
+           style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+
+    <GridPane hgap="12" vgap="10">
+        <Label text="Código producto:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+        <TextField fx:id="txtCodigoProducto" GridPane.rowIndex="0" GridPane.columnIndex="1" prefWidth="180"/>
+
+        <Label text="Cantidad:" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+        <TextField fx:id="txtCantidad" GridPane.rowIndex="0" GridPane.columnIndex="3" prefWidth="120"/>
+
+        <Button text="Buscar producto" onAction="#buscarProducto" GridPane.rowIndex="0" GridPane.columnIndex="4"/>
+        <Button text="Agregar línea" onAction="#agregarLinea" GridPane.rowIndex="0" GridPane.columnIndex="5"/>
+
+        <Label text="Producto:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+        <TextField fx:id="txtNombreProducto" editable="false" GridPane.rowIndex="1" GridPane.columnIndex="1" prefWidth="220"/>
+
+        <Label text="Descripción editable:" GridPane.rowIndex="1" GridPane.columnIndex="2"/>
+        <TextField fx:id="txtDescripcionEditable" GridPane.rowIndex="1" GridPane.columnIndex="3" prefWidth="220"/>
+
+        <Label text="IVA %:" GridPane.rowIndex="1" GridPane.columnIndex="4"/>
+        <ComboBox fx:id="cmbIva" GridPane.rowIndex="1" GridPane.columnIndex="5" prefWidth="100"/>
+
+        <Label text="Subtotal línea:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+        <TextField fx:id="txtSubtotalLinea" editable="false" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+        <Label text="Impuesto línea:" GridPane.rowIndex="2" GridPane.columnIndex="2"/>
+        <TextField fx:id="txtImpuestoLinea" editable="false" GridPane.rowIndex="2" GridPane.columnIndex="3"/>
+
+        <Label text="Total línea:" GridPane.rowIndex="2" GridPane.columnIndex="4"/>
+        <TextField fx:id="txtTotalLinea" editable="false" GridPane.rowIndex="2" GridPane.columnIndex="5"/>
+    </GridPane>
+
+    <TableView fx:id="tblDetalleFactura" prefWidth="920" prefHeight="260">
         <columns>
-            <TableColumn fx:id="colIdFactura" text="ID Factura" prefWidth="100"/>
-            <TableColumn fx:id="colFechaFactura" text="Fecha" prefWidth="150"/>
-            <TableColumn fx:id="colClienteFactura" text="Cliente" prefWidth="200"/>
-            <TableColumn fx:id="colMontoFactura" text="Monto" prefWidth="100"/>
+            <TableColumn fx:id="colCodigoProducto" text="Código" prefWidth="90"/>
+            <TableColumn fx:id="colProductoFactura" text="Producto" prefWidth="190"/>
+            <TableColumn fx:id="colDescripcionFactura" text="Descripción" prefWidth="240"/>
+            <TableColumn fx:id="colCantidadFactura" text="Cantidad" prefWidth="90"/>
+            <TableColumn fx:id="colIvaFactura" text="IVA %" prefWidth="80"/>
+            <TableColumn fx:id="colSubtotalFacturaTabla" text="Subtotal" prefWidth="100"/>
+            <TableColumn fx:id="colImpuestoFacturaTabla" text="Impuesto" prefWidth="100"/>
+            <TableColumn fx:id="colTotalFacturaTabla" text="Total" prefWidth="100"/>
         </columns>
     </TableView>
+
+    <HBox spacing="20" alignment="CENTER">
+        <Label text="Subtotal factura:"/>
+        <Label fx:id="lblSubtotalFactura" text="0.00" style="-fx-font-weight: bold;"/>
+
+        <Label text="Impuesto:"/>
+        <Label fx:id="lblImpuestoFactura" text="0.00" style="-fx-font-weight: bold;"/>
+
+        <Label text="Total:"/>
+        <Label fx:id="lblTotalFactura" text="0.00" style="-fx-font-weight: bold;"/>
+    </HBox>
+
+    <HBox spacing="10" alignment="CENTER">
+        <Button text="Guardar preliminar" onAction="#guardarPreliminar" prefWidth="170"/>
+        <Button text="Emitir factura" onAction="#emitirFactura" prefWidth="170"/>
+        <Button text="Ver pendientes" onAction="#abrirPendientes" prefWidth="170"/>
+        <Button text="Ver emitidas" onAction="#abrirEmitidas" prefWidth="170"/>
+    </HBox>
+
+    <HBox spacing="10" alignment="CENTER">
+        <Button text="Limpiar" onAction="#limpiarTodo" prefWidth="170"/>
+        <Button text="Volver" onAction="#volver" prefWidth="170"/>
+    </HBox>
 </VBox>

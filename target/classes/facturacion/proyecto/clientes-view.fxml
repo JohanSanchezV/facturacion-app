@@ -6,31 +6,60 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.VBox?>
 
 <VBox xmlns:fx="http://javafx.com/fxml"
       fx:controller="facturacion.proyecto.controller.ClientesController"
-      spacing="10" alignment="CENTER" prefWidth="500" prefHeight="500">
+      spacing="12" alignment="TOP_CENTER" prefWidth="760" prefHeight="650">
     <padding>
         <Insets top="20" right="20" bottom="20" left="20"/>
     </padding>
 
-    <Label text="Mantenimiento de Clientes" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
-    <TextField fx:id="txtNombre" promptText="Nombre"/>
-    <TextField fx:id="txtIdentificacion" promptText="Identificación"/>
-    <TextField fx:id="txtCorreo" promptText="Correo"/>
-    <TextField fx:id="txtTelefono" promptText="Teléfono"/>
+    <Label text="Mantenimiento de Clientes"
+           style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
 
-    <Button text="Guardar" onAction="#guardarCliente" prefWidth="180"/>
-    <Button text="Limpiar" onAction="#limpiarFormulario" prefWidth="180"/>
-    <Button text="Cargar clientes" onAction="#cargarClientes" prefWidth="180"/>
-    <Button text="Volver" onAction="#volver" prefWidth="180"/>
+    <GridPane hgap="10" vgap="10">
+        <Label text="ID Cliente:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+        <TextField fx:id="txtIdCliente" GridPane.rowIndex="0" GridPane.columnIndex="1" prefWidth="180"/>
 
-    <TableView fx:id="tblClientes" prefWidth="450" prefHeight="180">
+        <Label text="Identificación:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+        <TextField fx:id="txtIdentificacion" GridPane.rowIndex="1" GridPane.columnIndex="1" prefWidth="220"/>
+
+        <Label text="Nombre:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+        <TextField fx:id="txtNombre" GridPane.rowIndex="2" GridPane.columnIndex="1" prefWidth="220"/>
+
+        <Label text="Apellido paterno:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+        <TextField fx:id="txtApellidoPaterno" GridPane.rowIndex="3" GridPane.columnIndex="1" prefWidth="220"/>
+
+        <Label text="Apellido materno:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+        <TextField fx:id="txtApellidoMaterno" GridPane.rowIndex="4" GridPane.columnIndex="1" prefWidth="220"/>
+
+        <Label text="Correo:" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+        <TextField fx:id="txtCorreo" GridPane.rowIndex="5" GridPane.columnIndex="1" prefWidth="280"/>
+
+        <Label text="Teléfono:" GridPane.rowIndex="6" GridPane.columnIndex="0"/>
+        <TextField fx:id="txtTelefono" GridPane.rowIndex="6" GridPane.columnIndex="1" prefWidth="180"/>
+
+        <Label text="ID Dirección:" GridPane.rowIndex="7" GridPane.columnIndex="0"/>
+        <TextField fx:id="txtIdDireccion" GridPane.rowIndex="7" GridPane.columnIndex="1" prefWidth="180"/>
+    </GridPane>
+
+    <Button text="Buscar por identificación" onAction="#buscarCliente" prefWidth="240"/>
+    <Button text="Guardar nuevo" onAction="#guardarCliente" prefWidth="240"/>
+    <Button text="Editar" onAction="#editarCliente" prefWidth="240"/>
+    <Button text="Eliminar" onAction="#eliminarCliente" prefWidth="240"/>
+    <Button text="Listar clientes" onAction="#cargarClientes" prefWidth="240"/>
+    <Button text="Limpiar" onAction="#limpiarFormulario" prefWidth="240"/>
+    <Button text="Volver" onAction="#volver" prefWidth="240"/>
+
+    <TableView fx:id="tblClientes" prefWidth="700" prefHeight="220">
         <columns>
-            <TableColumn fx:id="colNombre" text="Nombre" prefWidth="180"/>
-            <TableColumn fx:id="colIdentificacion" text="Identificación" prefWidth="120"/>
-            <TableColumn fx:id="colCorreo" text="Correo" prefWidth="150"/>
+            <TableColumn fx:id="colIdCliente" text="ID" prefWidth="70"/>
+            <TableColumn fx:id="colNombreCompleto" text="Nombre completo" prefWidth="220"/>
+            <TableColumn fx:id="colIdentificacion" text="Identificación" prefWidth="130"/>
+            <TableColumn fx:id="colCorreo" text="Correo" prefWidth="180"/>
+            <TableColumn fx:id="colTelefono" text="Teléfono" prefWidth="100"/>
         </columns>
     </TableView>
 </VBox>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="facturacion.proyecto.controller.FacturasEmitidasController"
+      spacing="12" alignment="TOP_CENTER" prefWidth="900" prefHeight="580">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <Label text="Facturas Emitidas" style="-fx-font-size: 22px; -fx-font-weight: bold;"/>
+
+    <GridPane hgap="10" vgap="10">
+        <Label text="Nombre cliente:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+        <TextField fx:id="txtNombreCliente" GridPane.rowIndex="0" GridPane.columnIndex="1" prefWidth="220"/>
+
+        <Label text="Identificación:" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+        <TextField fx:id="txtIdentificacion" GridPane.rowIndex="0" GridPane.columnIndex="3" prefWidth="180"/>
+
+        <Label text="Fecha desde:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+        <TextField fx:id="txtFechaDesde" GridPane.rowIndex="1" GridPane.columnIndex="1" promptText="2026-04-08"/>
+
+        <Label text="Fecha hasta:" GridPane.rowIndex="1" GridPane.columnIndex="2"/>
+        <TextField fx:id="txtFechaHasta" GridPane.rowIndex="1" GridPane.columnIndex="3" promptText="2026-04-08"/>
+    </GridPane>
+
+    <Button text="Buscar" onAction="#buscar" prefWidth="180"/>
+    <Button text="Ver PDF" onAction="#verPdf" prefWidth="180"/>
+    <Button text="Volver" onAction="#volver" prefWidth="180"/>
+
+    <TableView fx:id="tblFacturasEmitidas" prefWidth="840" prefHeight="320">
+        <columns>
+            <TableColumn fx:id="colIdFactura" text="Factura" prefWidth="100"/>
+            <TableColumn fx:id="colNombreClienteTabla" text="Cliente" prefWidth="280"/>
+            <TableColumn fx:id="colIdentificacionTabla" text="Identificación" prefWidth="140"/>
+            <TableColumn fx:id="colFechaTabla" text="Fecha" prefWidth="120"/>
+            <TableColumn fx:id="colMontoTabla" text="Monto" prefWidth="140"/>
+        </columns>
+    </TableView>
+</VBox>
