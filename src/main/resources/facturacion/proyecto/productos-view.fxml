@@ -2,16 +2,20 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
 <VBox xmlns:fx="http://javafx.com/fxml"
       fx:controller="facturacion.proyecto.controller.ProductosController"
-      spacing="12" alignment="TOP_CENTER" prefWidth="720" prefHeight="650">
+      spacing="18" alignment="TOP_CENTER" prefWidth="980" prefHeight="760">
+
     <padding>
         <Insets top="20" right="20" bottom="20" left="20"/>
     </padding>
@@ -19,51 +23,69 @@
     <Label text="Mantenimiento de Productos"
            style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
 
-    <GridPane hgap="10" vgap="10">
+    <GridPane hgap="14" vgap="12">
+        <columnConstraints>
+            <ColumnConstraints minWidth="130" prefWidth="130"/>
+            <ColumnConstraints minWidth="280" prefWidth="280"/>
+            <ColumnConstraints minWidth="130" prefWidth="130"/>
+            <ColumnConstraints minWidth="280" prefWidth="280"/>
+        </columnConstraints>
+
         <Label text="Código:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
-        <TextField fx:id="txtIdProducto" GridPane.rowIndex="0" GridPane.columnIndex="1" prefWidth="220"/>
+        <TextField fx:id="txtCodigoProducto" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
 
         <Label text="Nombre:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
-        <TextField fx:id="txtNombreProducto" GridPane.rowIndex="1" GridPane.columnIndex="1" prefWidth="320"/>
+        <TextField fx:id="txtNombreProducto" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
 
-        <Label text="Precio:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+        <Label text="Precio unitario:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
         <TextField fx:id="txtPrecio" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
 
-        <Label text="Descripción:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
-        <TextField fx:id="txtDescripcionNombre" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+        <Label text="Cantidad:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+        <TextField fx:id="txtCantidadDisponible" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
 
-        <Label text="Categoría:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
-        <TextField fx:id="txtCategoriaNombre" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+        <Label text="Tarifa IVA:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+        <ComboBox fx:id="cmbIva" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
 
-        <Label text="Material:" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
-        <TextField fx:id="txtMaterialNombre" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+        <Label text="Descripción:" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+        <TextField fx:id="txtDescripcionNombre" GridPane.rowIndex="0" GridPane.columnIndex="3"/>
 
-        <Label text="ID Descripción:" GridPane.rowIndex="3" GridPane.columnIndex="2"/>
-        <TextField fx:id="txtIdDescripcion" GridPane.rowIndex="3" GridPane.columnIndex="3" prefWidth="120"/>
+        <Label text="Categoría:" GridPane.rowIndex="1" GridPane.columnIndex="2"/>
+        <HBox spacing="8" GridPane.rowIndex="1" GridPane.columnIndex="3">
+            <ComboBox fx:id="cmbCategoria" prefWidth="210"/>
+            <Button text="Nueva categoría" onAction="#crearCategoria"/>
+        </HBox>
 
-        <Label text="ID Categoría:" GridPane.rowIndex="4" GridPane.columnIndex="2"/>
-        <TextField fx:id="txtIdCategoria" GridPane.rowIndex="4" GridPane.columnIndex="3" prefWidth="120"/>
+        <Label text="Material:" GridPane.rowIndex="2" GridPane.columnIndex="2"/>
+        <ComboBox fx:id="cmbMaterial" GridPane.rowIndex="2" GridPane.columnIndex="3"/>
 
-        <Label text="ID Material:" GridPane.rowIndex="5" GridPane.columnIndex="2"/>
-        <TextField fx:id="txtIdMaterial" GridPane.rowIndex="5" GridPane.columnIndex="3" prefWidth="120"/>
+        <Label text="Impuesto calculado:" GridPane.rowIndex="3" GridPane.columnIndex="2"/>
+        <Label fx:id="lblImpuestoCalculado" text="0.00" GridPane.rowIndex="3" GridPane.columnIndex="3"/>
+
+        <Label text="Total calculado:" GridPane.rowIndex="4" GridPane.columnIndex="2"/>
+        <Label fx:id="lblTotalCalculado" text="0.00" GridPane.rowIndex="4" GridPane.columnIndex="3"/>
     </GridPane>
 
-    <Button text="Buscar por código" onAction="#buscarProducto" prefWidth="220"/>
-    <Button text="Guardar nuevo" onAction="#guardarProducto" prefWidth="220"/>
-    <Button text="Editar" onAction="#editarProducto" prefWidth="220"/>
-    <Button text="Eliminar" onAction="#eliminarProducto" prefWidth="220"/>
-    <Button text="Listar productos" onAction="#cargarProductos" prefWidth="220"/>
-    <Button text="Limpiar" onAction="#limpiarFormulario" prefWidth="220"/>
-    <Button text="Volver" onAction="#volver" prefWidth="220"/>
+    <HBox spacing="10" alignment="CENTER">
+        <Button text="Buscar" onAction="#buscarProducto" prefWidth="110"/>
+        <Button text="Guardar nuevo" onAction="#guardarProducto" prefWidth="120"/>
+        <Button text="Editar" onAction="#editarProducto" prefWidth="100"/>
+        <Button text="Eliminar" onAction="#eliminarProducto" prefWidth="100"/>
+        <Button text="Listar productos" onAction="#cargarProductos" prefWidth="120"/>
+        <Button text="Limpiar" onAction="#limpiarFormulario" prefWidth="100"/>
+        <Button text="Volver" onAction="#volver" prefWidth="100"/>
+    </HBox>
 
-    <TableView fx:id="tblProductos" prefWidth="660" prefHeight="220">
+    <TableView fx:id="tblProductos" prefWidth="930" prefHeight="420">
         <columns>
-            <TableColumn fx:id="colIdProducto" text="ID" prefWidth="70"/>
-            <TableColumn fx:id="colNombreProducto" text="Nombre" prefWidth="180"/>
+            <TableColumn fx:id="colCodigoProducto" text="Código" prefWidth="110"/>
+            <TableColumn fx:id="colNombreProducto" text="Nombre" prefWidth="150"/>
             <TableColumn fx:id="colPrecioProducto" text="Precio" prefWidth="90"/>
-            <TableColumn fx:id="colDescripcionProducto" text="Descripción" prefWidth="140"/>
-            <TableColumn fx:id="colCategoriaProducto" text="Categoría" prefWidth="100"/>
+            <TableColumn fx:id="colCantidadProducto" text="Cantidad" prefWidth="90"/>
+            <TableColumn fx:id="colIvaProducto" text="IVA %" prefWidth="70"/>
+            <TableColumn fx:id="colDescripcionProducto" text="Descripción" prefWidth="210"/>
+            <TableColumn fx:id="colCategoriaProducto" text="Categoría" prefWidth="110"/>
             <TableColumn fx:id="colMaterialProducto" text="Material" prefWidth="100"/>
         </columns>
     </TableView>
+
 </VBox>

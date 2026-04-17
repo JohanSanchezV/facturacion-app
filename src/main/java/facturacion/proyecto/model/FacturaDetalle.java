@@ -1,7 +1,8 @@
 package facturacion.proyecto.model;
 
 public class FacturaDetalle {
-    private int idProducto;
+
+    private String codigoProducto;
     private String nombreProducto;
     private String descripcionEditable;
     private int cantidad;
@@ -13,21 +14,12 @@ public class FacturaDetalle {
     public FacturaDetalle() {
     }
 
-    public FacturaDetalle(int idProducto, String nombreProducto, int cantidad, double subtotal, double impuesto, double total) {
-        this.idProducto = idProducto;
-        this.nombreProducto = nombreProducto;
-        this.cantidad = cantidad;
-        this.subtotal = subtotal;
-        this.impuesto = impuesto;
-        this.total = total;
+    public String getCodigoProducto() {
+        return codigoProducto;
     }
 
-    public int getIdProducto() {
-        return idProducto;
-    }
-
-    public void setIdProducto(int idProducto) {
-        this.idProducto = idProducto;
+    public void setCodigoProducto(String codigoProducto) {
+        this.codigoProducto = codigoProducto;
     }
 
     public String getNombreProducto() {

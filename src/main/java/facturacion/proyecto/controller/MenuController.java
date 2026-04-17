@@ -24,6 +24,11 @@ public class MenuController {
     }
 
     @FXML
+    public void abrirUsuarios(ActionEvent event) {
+        abrirVentana("/facturacion/proyecto/usuarios-view.fxml", "Usuarios");
+    }
+
+    @FXML
     public void abrirClientes(ActionEvent event) {
         abrirVentana("/facturacion/proyecto/clientes-view.fxml", "Clientes");
     }
@@ -37,7 +42,10 @@ public class MenuController {
     public void abrirFacturacion(ActionEvent event) {
         abrirVentana("/facturacion/proyecto/facturacion-view.fxml", "Facturación");
     }
-
+    @FXML
+        public void abrirReportesAuditoria(ActionEvent event) {
+            abrirVentana("/facturacion/proyecto/reportes-auditoria-view.fxml", "Reportes y Auditoría");
+        }
     @FXML
     public void salir(ActionEvent event) {
         try {
@@ -55,27 +63,29 @@ public class MenuController {
         }
     }
 
-private void abrirVentana(String rutaFxml, String titulo) {
-    try {
-        FXMLLoader loader = new FXMLLoader(App.class.getResource(rutaFxml));
-        Scene scene = new Scene(loader.load());
+  
 
-        Stage stage = new Stage();
-        stage.setTitle(titulo);
-        stage.setScene(scene);
-        stage.setResizable(false);
-        stage.show();
+    private void abrirVentana(String rutaFxml, String titulo) {
+        try {
+            FXMLLoader loader = new FXMLLoader(App.class.getResource(rutaFxml));
+            Scene scene = new Scene(loader.load());
 
-    } catch (Exception e) {
-        e.printStackTrace();
+            Stage stage = new Stage();
+            stage.setTitle(titulo);
+            stage.setScene(scene);
+            stage.setResizable(false);
+            stage.show();
 
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Error");
-        alert.setHeaderText("No se pudo abrir la ventana");
-        alert.setContentText(e.getClass().getSimpleName() + ": " + e.getMessage());
-        alert.showAndWait();
+        } catch (Exception e) {
+            e.printStackTrace();
+
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("No se pudo abrir la ventana");
+            alert.setContentText(e.getClass().getSimpleName() + ": " + e.getMessage());
+            alert.showAndWait();
+        }
     }
-}
 
     private void mostrarMensaje(String titulo, String mensaje) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);

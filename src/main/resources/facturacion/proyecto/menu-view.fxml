@@ -15,8 +15,10 @@
     <Label text="Menú Principal" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
     <Label fx:id="lblBienvenida"/>
 
+    <Button text="Usuarios" onAction="#abrirUsuarios" prefWidth="220"/>
     <Button text="Clientes" onAction="#abrirClientes" prefWidth="220"/>
     <Button text="Productos" onAction="#abrirProductos" prefWidth="220"/>
     <Button text="Facturación" onAction="#abrirFacturacion" prefWidth="220"/>
+    <Button text="Reportes y Auditoría" onAction="#abrirReportesAuditoria" prefWidth="220"/>
     <Button text="Cerrar sesión" onAction="#salir" prefWidth="220"/>
 </VBox>

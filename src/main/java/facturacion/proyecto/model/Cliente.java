@@ -2,15 +2,13 @@ package facturacion.proyecto.model;
 
 public class Cliente {
     private int idTercero;
+    private String identificacion;
     private String nombre;
     private String apellidoPaterno;
     private String apellidoMaterno;
-    private String identificacion;
     private String correo;
     private String telefono;
-
-    public Cliente() {
-    }
+    private int idDireccion;
 
     public int getIdTercero() {
         return idTercero;
@@ -18,6 +16,14 @@ public class Cliente {
 
     public void setIdTercero(int idTercero) {
         this.idTercero = idTercero;
+    }
+
+    public String getIdentificacion() {
+        return identificacion;
+    }
+
+    public void setIdentificacion(String identificacion) {
+        this.identificacion = identificacion;
     }
 
     public String getNombre() {
@@ -44,14 +50,6 @@ public class Cliente {
         this.apellidoMaterno = apellidoMaterno;
     }
 
-    public String getIdentificacion() {
-        return identificacion;
-    }
-
-    public void setIdentificacion(String identificacion) {
-        this.identificacion = identificacion;
-    }
-
     public String getCorreo() {
         return correo;
     }
@@ -68,7 +66,18 @@ public class Cliente {
         this.telefono = telefono;
     }
 
+    public int getIdDireccion() {
+        return idDireccion;
+    }
+
+    public void setIdDireccion(int idDireccion) {
+        this.idDireccion = idDireccion;
+    }
+
     public String getNombreCompleto() {
-        return nombre + " " + apellidoPaterno + " " + apellidoMaterno;
+        String nom = nombre == null ? "" : nombre;
+        String ap1 = apellidoPaterno == null ? "" : apellidoPaterno;
+        String ap2 = apellidoMaterno == null ? "" : apellidoMaterno;
+        return (nom + " " + ap1 + " " + ap2).trim().replaceAll("\\s+", " ");
     }
 }

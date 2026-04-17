@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="facturacion.proyecto.controller.ReportesAuditoriaController"
+      spacing="12" prefWidth="1100" prefHeight="760">
+
+    <padding>
+        <Insets top="15" right="15" bottom="15" left="15"/>
+    </padding>
+
+    <Label text="Reportes y Auditoría" style="-fx-font-size: 28px; -fx-font-weight: bold;"/>
+
+    <TabPane tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+        <Tab text="Ventas por fechas">
+            <AnchorPane>
+                <VBox spacing="12" AnchorPane.topAnchor="10" AnchorPane.leftAnchor="10" AnchorPane.rightAnchor="10" AnchorPane.bottomAnchor="10">
+                    <HBox spacing="10">
+                        <Label text="Fecha desde:"/>
+                        <DatePicker fx:id="dpVentasDesde"/>
+                        <Label text="Fecha hasta:"/>
+                        <DatePicker fx:id="dpVentasHasta"/>
+                        <Button text="Buscar" onAction="#buscarVentasPorFechas"/>
+                    </HBox>
+                    <TableView fx:id="tblVentasFechas" VBox.vgrow="ALWAYS">
+                        <columns>
+                            <TableColumn fx:id="colFechaVenta" text="Fecha" prefWidth="200"/>
+                            <TableColumn fx:id="colCantidadFacturasVenta" text="Cantidad facturas" prefWidth="220"/>
+                            <TableColumn fx:id="colTotalVentasVenta" text="Total ventas" prefWidth="220"/>
+                        </columns>
+                    </TableView>
+                </VBox>
+            </AnchorPane>
+        </Tab>
+
+        <Tab text="Facturas por cliente">
+            <AnchorPane>
+                <VBox spacing="12" AnchorPane.topAnchor="10" AnchorPane.leftAnchor="10" AnchorPane.rightAnchor="10" AnchorPane.bottomAnchor="10">
+                    <HBox spacing="10">
+                        <Label text="Nombre cliente:"/>
+                        <TextField fx:id="txtNombreCliente" prefWidth="220"/>
+                        <Label text="Identificación:"/>
+                        <TextField fx:id="txtIdentificacionCliente" prefWidth="180"/>
+                    </HBox>
+                    <HBox spacing="10">
+                        <Label text="Fecha desde:"/>
+                        <DatePicker fx:id="dpClienteDesde"/>
+                        <Label text="Fecha hasta:"/>
+                        <DatePicker fx:id="dpClienteHasta"/>
+                        <Button text="Buscar" onAction="#buscarFacturasCliente"/>
+                        <Button text="Ver PDF" onAction="#abrirPdfFacturaCliente"/>
+                    </HBox>
+                    <TableView fx:id="tblFacturasCliente" VBox.vgrow="ALWAYS">
+                        <columns>
+                            <TableColumn fx:id="colNumeroFacturaCliente" text="Número factura" prefWidth="160"/>
+                            <TableColumn fx:id="colNombreClienteTabla" text="Cliente" prefWidth="260"/>
+                            <TableColumn fx:id="colIdentificacionClienteTabla" text="Identificación" prefWidth="160"/>
+                            <TableColumn fx:id="colFechaFacturaCliente" text="Fecha emisión" prefWidth="150"/>
+                            <TableColumn fx:id="colMontoFacturaCliente" text="Monto" prefWidth="150"/>
+                        </columns>
+                    </TableView>
+                </VBox>
+            </AnchorPane>
+        </Tab>
+
+        <Tab text="Auditoría">
+            <AnchorPane>
+                <VBox spacing="12" AnchorPane.topAnchor="10" AnchorPane.leftAnchor="10" AnchorPane.rightAnchor="10" AnchorPane.bottomAnchor="10">
+                    <HBox spacing="10">
+                        <Label text="Módulo:"/>
+                        <ChoiceBox fx:id="chModuloAuditoria" prefWidth="180"/>
+                        <Label text="Tabla:"/>
+                        <ChoiceBox fx:id="chTablaAuditoria" prefWidth="220"/>
+                    </HBox>
+                    <HBox spacing="10">
+                        <Label text="Fecha desde:"/>
+                        <DatePicker fx:id="dpAuditoriaDesde"/>
+                        <Label text="Fecha hasta:"/>
+                        <DatePicker fx:id="dpAuditoriaHasta"/>
+                        <Button text="Buscar" onAction="#buscarAuditoria"/>
+                    </HBox>
+                    <TableView fx:id="tblAuditoria" VBox.vgrow="ALWAYS">
+                        <columns>
+                            <TableColumn fx:id="colIdAuditoria" text="ID" prefWidth="60"/>
+                            <TableColumn fx:id="colModuloAuditoria" text="Módulo" prefWidth="120"/>
+                            <TableColumn fx:id="colAccionAuditoria" text="Acción" prefWidth="150"/>
+                            <TableColumn fx:id="colTablaAuditoria" text="Tabla" prefWidth="170"/>
+                            <TableColumn fx:id="colRegistroAuditoria" text="ID Registro" prefWidth="120"/>
+                            <TableColumn fx:id="colDetalleAuditoria" text="Detalle" prefWidth="320"/>
+                            <TableColumn fx:id="colUsuarioAuditoria" text="Usuario" prefWidth="180"/>
+                            <TableColumn fx:id="colFechaHoraAuditoria" text="Fecha/Hora" prefWidth="180"/>
+                        </columns>
+                    </TableView>
+                </VBox>
+            </AnchorPane>
+        </Tab>
+    </TabPane>
+
+    <HBox spacing="10">
+        <Button text="Limpiar" onAction="#limpiarTodo"/>
+        <Button text="Volver" onAction="#volver"/>
+    </HBox>
+</VBox>
